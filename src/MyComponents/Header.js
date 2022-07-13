@@ -5,9 +5,9 @@ export const Header = (props) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="home">{props.title}</Navbar.Brand>
+        <Navbar.Brand href="/">{props.title}</Navbar.Brand>
         <Nav className="float-end">
-          <Nav.Link href="home">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="about">About</Nav.Link>
         </Nav>
       </Container>
