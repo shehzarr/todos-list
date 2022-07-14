@@ -5,8 +5,10 @@ import { Footer } from "./MyComponents/Footer";
 import { AddTask } from "./MyComponents/AddTask";
 import { About } from "./MyComponents/About";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, React , createContext} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+export const ClickContext = createContext();
 
 function App() {
   let initTodo;
@@ -32,7 +34,7 @@ function App() {
 
   const addNewTask = (description) => {
     let id;
-    todos.length === 0 ? (id = 0) : (id = todos.length + 1);
+    todos.length === 0 ? (id = 0) : (id = todos.at(-1).id + 1);
     const newTask = {
       id: id,
       todo: description,
@@ -52,16 +54,13 @@ function App() {
         <Header title="Todos List" />
         <Routes>
           <Route
-            exact
-            path="/"
+            exact path="/"
             element={
               <>
                 <AddTask addNewTask={addNewTask} />
-                <Todos
-                  todos={todos}
-                  onDelete={onDelete}
-                  onComplete={onComplete}
-                />
+                <ClickContext.Provider value={{onDelete, onComplete}}>
+                  <Todos todos={todos}/>
+                </ClickContext.Provider>
               </>
             }
           />

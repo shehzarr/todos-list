@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Badge, Card } from 'react-bootstrap'
-
+import { ClickContext } from '../App'
+ 
 export const TodoItem = (props) => {
   
+  const value = useContext(ClickContext);
+
   let background, status, done;
   props.item.completed === true ? eval(' background = "success"; status = "Completed"; done = "Un Done"; ') : eval(' background = "warning"; status = "Pending"; done = "Finish Task" ')
 
@@ -19,8 +22,8 @@ export const TodoItem = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Button variant={background} size="sm" onClick={() => {props.onComplete(props.item, props.index)}}>{done}</Button>
-          <Button variant="danger" size="sm mx-2" onClick={() => {props.onDelete(props.item)}}>Delete</Button>
+          <Button variant={background} size="sm" onClick={() => {value.onComplete(props.item, props.index)}}>{done}</Button>
+          <Button variant="danger" size="sm mx-2" onClick={() => {value.onDelete(props.item)}}>Delete</Button>
         </Card.Footer>
       </Card>
     </>

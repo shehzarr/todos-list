@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Col, Row } from "react-bootstrap";
 
 export const AddTask = (props) => {
   const [desc, setDesc] = useState("");
@@ -20,13 +20,16 @@ export const AddTask = (props) => {
       <Form onSubmit={Submit}>
         <Form.Group className="mb-3">
           <Form.Label>New Task Description</Form.Label>
-          <Form.Control
-            type="textarea"
-            className="w-25"
-            placeholder="Enter Description"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-          />
+          <Row>
+            <Col sm={3}>
+              <Form.Control
+                type="textarea"
+                placeholder="Enter Description"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </Col>
+          </Row>
         </Form.Group>
 
         <Button variant="primary" type="submit">
